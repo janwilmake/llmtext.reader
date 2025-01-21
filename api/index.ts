@@ -4,7 +4,7 @@ import { JSDOM } from "jsdom";
 
 export const GET = async (request: Request) => {
   const url = new URL(request.url);
-
+  url.searchParams.delete("path");
   const [accept, ...rest] = url.pathname.split("/").slice(1);
   let targetUrl: string;
   try {
