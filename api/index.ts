@@ -68,13 +68,13 @@ export const GET = async (request: Request) => {
     if (accept === "md") {
       return new Response(article?.textContent, {
         status: 200,
-        headers: { "Content-Type": "text/markdown" },
+        headers: { "Content-Type": "text/markdown;charset=utf8" },
       });
     }
 
     return new Response(JSON.stringify(article, undefined, 2), {
       status: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json;charset=utf8" },
     });
   } catch (e: any) {
     return new Response(`Error: ${e.message}`, { status: 500 });
