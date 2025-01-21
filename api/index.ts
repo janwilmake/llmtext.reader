@@ -9,10 +9,11 @@ export const GET = async (request: Request) => {
   let targetUrl: string;
   try {
     targetUrl = decodeURIComponent(rest.join("/") + url.search);
-    targetUrl = targetUrl.replace(/https?:\/([^\/])/i, "$&/");
+    // Remove any malformed protocol strings
+    targetUrl = targetUrl.replace(/^https?:\/+/, "");
 
-    // Prepend https:// if no protocol is present
-    if (!/^https?:\/\//i.test(targetUrl)) {
+    // Ensure proper protocol format
+    if (!targetUrl.startsWith("https://")) {
       targetUrl = "https://" + targetUrl;
     }
     new URL(targetUrl);
