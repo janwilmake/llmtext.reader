@@ -31,7 +31,9 @@ export const GET = async (request: Request) => {
     console.log({ targetUrl });
     response = await fetch(targetUrl);
   } catch (e) {
-    return new Response("Fetch failed:" + e.message, { status: 400 });
+    return new Response("Fetch failed:" + e.message + `\nTARGET:${targetUrl}`, {
+      status: 400,
+    });
   }
   if (!response.ok) {
     try {
